@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>國小社會科素養評量｜2-2 民主國家的運作</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-dark: #1d4ed8;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --easy: #059669;
+      --medium: #d97706;
+      --hard: #dc2626;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+      background: #f8fafc;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      color: white;
+      padding: 24px 20px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-desc {
+      font-size: 0.95rem;
+      color: #bfdbfe;
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: #1e40af;
+      border-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-container {
+      max-width: 1080px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .stats-bar {
+      background: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--slate-600);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--slate-800);
+    }
+
+    .progress-box {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .progress-bar-bg {
+      height: 10px;
+      background: var(--slate-100);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--slate-600);
+    }
+
+    .filter-chip {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--slate-200);
+      background: white;
+      color: var(--slate-700);
+      transition: all 0.2s;
+    }
+
+    .filter-chip:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .filter-chip.chip-easy.active {
+      background: var(--easy);
+      border-color: var(--easy);
+    }
+
+    .filter-chip.chip-medium.active {
+      background: var(--medium);
+      border-color: var(--medium);
+    }
+
+    .filter-chip.chip-hard.active {
+      background: var(--hard);
+      border-color: var(--hard);
+    }
+
+    .question-card {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--slate-200);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .question-card:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .q-num-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .q-number {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-easy {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .badge-medium {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .badge-hard {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .badge-bloom {
+      background: #e0e7ff;
+      color: #1e40af;
+      border: 1px solid #c7d2fe;
+    }
+
+    .badge-page {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border: 1px solid #e9d5ff;
+    }
+
+    .q-stem {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .q-scenario {
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #334155;
+      font-style: italic;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.96rem;
+      color: var(--slate-800);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+      width: 100%;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: #2563eb;
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+
+    .opt-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--slate-100);
+      color: var(--slate-700);
+      font-weight: 700;
+      font-size: 0.88rem;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .opt-text {
+      flex: 1;
+      padding-top: 1px;
+    }
+
+    .option-btn.selected {
+      border-color: #2563eb;
+      background: #dbeafe;
+    }
+
+    .option-btn.selected .opt-key {
+      background: #2563eb;
+      color: white;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success) !important;
+      background: var(--success-light) !important;
+      color: #14532d !important;
+      font-weight: 700;
+    }
+
+    .option-btn.correct .opt-key {
+      background: var(--success) !important;
+      color: white !important;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger) !important;
+      background: var(--danger-light) !important;
+      color: #7f1d1d !important;
+      text-decoration: line-through;
+    }
+
+    .option-btn.wrong .opt-key {
+      background: var(--danger) !important;
+      color: white !important;
+    }
+
+    .explanation-box {
+      margin-top: 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.92rem;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-title {
+      font-weight: 800;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .exp-content {
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .print-view, .solutions-view {
+      display: none;
+      background: white;
+      padding: 36px 40px;
+      border-radius: 14px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 30px;
+    }
+
+    .print-header {
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .print-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .print-meta-grid {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      font-size: 0.95rem;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .print-q-item {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .print-q-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .print-q-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      margin-left: 18px;
+      font-size: 0.92rem;
+    }
+
+    .print-btn-bar {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .action-btn-secondary {
+      background: #f1f5f9;
+      color: var(--slate-700);
+      border: 1px solid var(--slate-200);
+    }
+
+    .action-btn-secondary:hover {
+      background: #e2e8f0;
+      color: var(--slate-800);
+    }
+
+    .answer-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      margin-bottom: 24px;
+    }
+
+    .answer-table th, .answer-table td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .answer-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .sol-card {
+      border-left: 4px solid #2563eb;
+      background: #f8fafc;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+    }
+
+    .sol-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    @media print {
+      header, .stats-bar, .filter-bar, .tab-nav, .print-btn-bar {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        padding: 0 !important;
+      }
+      .main-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .print-view {
+        display: block !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+      .interactive-view, .solutions-view {
+        display: none !important;
+      }
+      .print-q-item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-title-row">
+        <div>
+          <span class="header-badge">🏫 國小六年級社會領域｜108課綱素養導向評量</span>
+          <h1>第 2 單元 2-2：民主國家的運作</h1>
+        </div>
+        <div>
+          <span class="header-badge" style="background: #10b981;">全卷 25 題標準測驗</span>
+        </div>
+      </div>
+      <p class="header-desc">
+        依據課本第 40～45 頁完整脈絡設計。涵蓋中華民國憲法之地位與制定目的、中央政府五院分工與總統元首、地方行政與立法權責（以校園營養午餐為例）、人民四大基本權利（平等/自由/參政/受益）與三大基本義務（納稅/服兵役/接受國民教育）。
+      </p>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchView('interactive')">
+          <span>🎯</span> 線上互動測驗挑戰
+        </button>
+        <button class="tab-btn" onclick="switchView('print')">
+          <span>📄</span> 學生紙筆測驗卷（可列印）
+        </button>
+        <button class="tab-btn" onclick="switchView('solutions')">
+          <span>🔑</span> 教師詳解與題庫手冊
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- ==================== 模式一：線上互動測驗 ==================== -->
+    <div id="interactiveView" class="interactive-view">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-label">作答進度</span>
+          <span class="stat-value" id="progressCount">0 / 25</span>
+        </div>
+        <div class="progress-box">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; color: #64748b;">
+            <span>完成率</span>
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">目前答對題數</span>
+          <span class="stat-value" id="correctScore" style="color: var(--success);">0 題</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">目前得分（滿分100）</span>
+          <span class="stat-value" id="pointScore" style="color: var(--primary);">0 分</span>
+        </div>
+        <div>
+          <button class="action-btn action-btn-secondary" onclick="resetQuiz()">🔄 重新作答</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <span class="filter-label">難易度篩選：</span>
+        <button class="filter-chip active" onclick="filterDifficulty('all')">🌟 全部題目 (25)</button>
+        <button class="filter-chip chip-easy" onclick="filterDifficulty('easy')">🟢 基礎奠基 (10 題簡單)</button>
+        <button class="filter-chip chip-medium" onclick="filterDifficulty('medium')">🟡 情境理解 (10 題中等)</button>
+        <button class="filter-chip chip-hard" onclick="filterDifficulty('hard')">🔴 素養思辨 (5 題困難)</button>
+      </div>
+
+      <div id="questionsContainer"></div>
+    </div>
+
+    <!-- ==================== 模式二：紙筆考卷（A4 列印模式） ==================== -->
+    <div id="printView" class="print-view">
+      <div class="print-btn-bar">
+        <button class="action-btn" onclick="window.print()">🖨️ 列印考卷 (Ctrl + P)</button>
+        <button class="action-btn action-btn-secondary" onclick="switchView('interactive')">⬅️ 返回互動測驗</button>
+      </div>
+
+      <div class="print-header">
+        <div style="font-size: 1.1rem; font-weight: 700; color: #475569;">國小社會領域 六年級複習評量卷</div>
+        <h2 class="print-title">第 2 單元 2-2：民主國家的運作</h2>
+        <div class="print-meta-grid">
+          <span>六年 _____ 班</span>
+          <span>座號：_______</span>
+          <span>姓名：_________________</span>
+          <span>得分：_______________</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px; font-weight: 700; font-size: 0.95rem; background: #f1f5f9; padding: 8px 12px; border-radius: 6px;">
+        ※ 測驗說明：共 25 題單選題（每題 4 分，滿分 100 分），每題請選出一個最適當的答案（選項為 1、2、3、4），並將答案填寫於題號括號內。
+      </div>
+
+      <div id="printQuestionsList"></div>
+    </div>
+
+    <!-- ==================== 模式三：教師手冊與完整解答卷 ==================== -->
+    <div id="solutionsView" class="solutions-view">
+      <div class="print-btn-bar">
+        <button class="action-btn" onclick="copyAllMarkdown()">📋 一鍵複製題庫純文字 (Markdown)</button>
+        <button class="action-btn action-btn-secondary" onclick="switchView('interactive')">⬅️ 返回互動測驗</button>
+      </div>
+
+      <h2 style="font-size: 1.4rem; font-weight: 800; color: #1e40af; margin-bottom: 12px;">
+        📖 教師備課手冊：25 題標準答案與布魯姆認知維度分析
+      </h2>
+
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 16px; color: #334155;">【快速查對答案卡】</h3>
+      <table class="answer-table">
+        <thead>
+          <tr>
+            <th>題號</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; background: #f8fafc;">答案</td>
+            <td>1</td><td>4</td><td>2</td><td>3</td><td>1</td><td>3</td><td>4</td><td>1</td><td>4</td><td>4</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>題號</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; background: #f8fafc;">答案</td>
+            <td>1</td><td>3</td><td>3</td><td>2</td><td>2</td><td>4</td><td>1</td><td>2</td><td>2</td><td>4</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>題號</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5" style="background: #f8fafc; color: #94a3b8;">（全卷完）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; background: #f8fafc;">答案</td>
+            <td>2</td><td>1</td><td>3</td><td>1</td><td>3</td>
+            <td colspan="5" style="background: #f8fafc; color: #94a3b8;">每題 4 分 / 滿分 100</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 24px; margin-bottom: 16px; color: #334155;">
+        【逐題布魯姆指標與深度解析】
+      </h3>
+      <div id="solutionsDetailList"></div>
+    </div>
+
+  </main>
+
+  <script>
+    const quizData = [
+  {
+    "id": 1,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "記憶",
+    "page": "課本第 40 頁",
+    "stem": "在我們國家所有的法律中，哪一部法律被尊稱為「國家的根本大法」，具有最高的法律效力，其他任何法律都不能跟它相牴觸？",
+    "options": [
+      "中華民國憲法",
+      "道路交通安全規則",
+      "國民小學學生獎懲規定",
+      "野生動物保護條例"
+    ],
+    "answer": 1,
+    "explanation": "憲法是國家的根本大法，位階最高；凡是法律或命令與憲法相牴觸者，一律無效。"
+  },
+  {
+    "id": 2,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "記憶",
+    "page": "課本第 40 頁",
+    "stem": "《中華民國憲法》是在民國幾年的 12 月 25 日正式公布實施的？這一天後來也被訂為我國的「行憲紀念日」。",
+    "options": [
+      "民國元年",
+      "民國 10 年",
+      "民國 26 年",
+      "民國 36 年"
+    ],
+    "answer": 4,
+    "explanation": "中華民國憲法於民國 35 年底經制憲國民大會通過，並於民國 36 年（西元 1947 年）12 月 25 日正式施行。"
+  },
+  {
+    "id": 3,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 42 頁",
+    "stem": "依據我國中央政府的職權劃分，由大法官組成憲法法庭負責「解釋憲法」、審判一般民刑訴訟的是司法院，而負責國家公務人員考試的是哪一個院？",
+    "options": [
+      "行政院或監察院",
+      "司法院或考試院",
+      "立法院或外交部",
+      "國防部或法務部"
+    ],
+    "answer": 2,
+    "explanation": "司法院掌理民事、刑事與行政訴訟審判，大法官並負責解釋憲法；考試院掌理公務人員任用考選及專門職業技術人員資格銓敘。"
+  },
+  {
+    "id": 4,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 42 頁",
+    "stem": "我國中央政府的「立法院」是由全體人民選出的立法委員所組成。立法院在國家運作中負責哪一項最重要的工作？",
+    "options": [
+      "天天在各大十字路口指揮交通秩序",
+      "負責在醫院替全國民眾看病開立藥方",
+      "負責制定與修正法律、審查政府預算等",
+      "負責在全臺灣各地填補馬路坑洞"
+    ],
+    "answer": 3,
+    "explanation": "立法院是我國最高民意立法機關，代表全國人民監督中央政府施政、制定與修改法律，並嚴密審查行政院提出的國家總預算。"
+  },
+  {
+    "id": 5,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "記憶",
+    "page": "課本第 42 頁",
+    "stem": "在我國中央政府五院中，哪一個院是國家的「最高行政機關」，底下設有內政部、教育部、交通部等各部會，負責推動各項施政政策？",
+    "options": [
+      "行政院",
+      "立法院",
+      "司法院",
+      "監察院"
+    ],
+    "answer": 1,
+    "explanation": "行政院是最高行政機關，由行政院院長領導各部會首長依法推動各項國家政務與重大公共工程建設。"
+  },
+  {
+    "id": 6,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 43 頁",
+    "stem": "在地方縣市政府（如臺中市政府、花蓮縣政府）推動各項建設時，哪一個機關負責代表在地民眾進行監督，並審查縣市政府提出的預算案？",
+    "options": [
+      "地方地方法院民事法庭",
+      "地方警察局刑事警察大隊",
+      "直轄市議會或縣市議會",
+      "地方郵政管理局包裹分檢處"
+    ],
+    "answer": 3,
+    "explanation": "直轄市議會與縣市議會是地方民意機關，由市民或縣民投票選出議員，負責制定地方單行規章、監督地方政府施政並審查地方預算。"
+  },
+  {
+    "id": 7,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 44 頁",
+    "stem": "憲法第七條規定：「中華民國人民，無分男女、宗教、種族、階級、黨派，在法律上一律平等。」這項保障人民不受不合理歧視的權利稱為什麼？",
+    "options": [
+      "訴訟權",
+      "財產權",
+      "受益權",
+      "平等權"
+    ],
+    "answer": 4,
+    "explanation": "「平等權」保障每位國民在法律面前均享有尊嚴與平等待遇，禁止國家公權力因性別、信仰、族群或社會背景而給予不合理的差別待遇。"
+  },
+  {
+    "id": 8,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 44 頁",
+    "stem": "當我國國民年滿十八歲可以參加公投，年滿二十歲享有投票選舉公職人員的權利，也可以依法登記參選。這些參與國家政治的權利屬於憲法上的哪一種權利？",
+    "options": [
+      "參政權",
+      "生存權",
+      "自由權",
+      "財產權"
+    ],
+    "answer": 1,
+    "explanation": "「參政權」包括選舉、罷免、創制、複決（公投）以及應考試服公職的權利，是現代民主國家公民參與公共治理的核心權利。"
+  },
+  {
+    "id": 9,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "記憶",
+    "page": "課本第 45 頁",
+    "stem": "憲法除了保障人民的各項權利外，也規定了國民必須履行的基本義務。下列哪一組項目全都是憲法明文規定的國民基本義務？",
+    "options": [
+      "早睡早起、每天散步一萬步、多吃蔬菜",
+      "每年看三場電影、出國旅遊一次、買新手機",
+      "每天向鄰居微笑打招呼、週末種兩棵樹",
+      "納稅、服兵役、接受國民教育"
+    ],
+    "answer": 4,
+    "explanation": "憲法第十九條至第二十一條明訂國民的三大基本義務：納稅（提供國家財政支柱）、服兵役（保衛國家國防）、接受國民教育（厚植國民素質），並須共同遵守法律。"
+  },
+  {
+    "id": 10,
+    "difficulty": "easy",
+    "diffName": "簡單 🟢",
+    "bloom": "理解",
+    "page": "課本第 41 頁",
+    "stem": "民主國家的各級政府首長（如總統、縣市長）與民意代表（如立法委員、議員），都設有固定的任期（通常四年），任期屆滿必須重新選舉。這項設計最主要的目的何在？",
+    "options": [
+      "讓每位選民每四年可以免費領取一張遊樂園門票",
+      "為了讓印刷廠每四年都可以大量印製廣告海報賺錢",
+      "讓學校校長每四年必須換新的一批粉筆使用",
+      "防止權力被少數人長期壟斷而滋生腐敗，落實人民監督"
+    ],
+    "answer": 4,
+    "explanation": "固定任期制度確保權力會定期和平輪替，讓選民能藉由手中選票考核官員施政績效，做不好就換人做，防止專權濫權。"
+  },
+  {
+    "id": 11,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "應用",
+    "page": "課本第 40 頁",
+    "scenario": "法律位階情境：某鄉鎮公所自行制定了一條自治規定：「本鄉鎮家族財產只有男性子孫可以繼承，女性一律不得分財產。」這項規定在法庭上會得到什麼結果？",
+    "stem": "請問這項自治規定在法律上的效力如何？",
+    "options": [
+      "因嚴重牴觸憲法第七條保障男女平等的原則，該條例自始無效",
+      "依然完全有效，因為地方公所有權自行決定一切規定",
+      "只有在週末無效，平日星期一到星期五仍然完全有效",
+      "只要鄉長蓋章同意，就能推翻中華民國憲法的規定"
+    ],
+    "answer": 1,
+    "explanation": "憲法是國家法律金字塔的頂端，所有法律、法規命令與地方自治法規若牴觸憲法條文與精神者，皆屬無效。"
+  },
+  {
+    "id": 12,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "理解",
+    "page": "課本第 42、43 頁",
+    "stem": "為了維護全臺灣各國小學童營養午餐的衛生與安全，中央政府與地方政府通常是如何分工合作的？",
+    "options": [
+      "立法院全體立委天天到各小學廚房幫忙洗菜與炒菜",
+      "只要靠學校警衛叔叔一個人在大門口聞味道把關就好",
+      "立法院制定《學校衛生法》，行政院訂定安全標準，縣市政府實際視察執行",
+      "中央政府完全不必過問，全部交由各班級學生自己開會決定"
+    ],
+    "answer": 3,
+    "explanation": "中央立法機關（立法院）制定全國一體適用的法律，中央行政機關（教育部與衛福部）訂定細部衛生指標，地方縣市政府教育局與衛生局則負責在地落實視察與督導。"
+  },
+  {
+    "id": 13,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "應用",
+    "page": "課本第 43 頁",
+    "scenario": "地方財政實務：屏東縣政府為了拓寬市區外環道路、改善上下學塞車問題，編列了一億元的道路拓寬工程預算。",
+    "stem": "請問縣政府必須將這筆預算送到哪一個機關開會審查，獲得通過後才能動工花錢？",
+    "options": [
+      "屏東火車站旅客服務諮詢中心",
+      "臺北市立動物園企鵝館管理處",
+      "屏東縣議會",
+      "高雄市立圖書館總館閱覽室"
+    ],
+    "answer": 3,
+    "explanation": "地方政府（行政機關）負責編列預算，但必須送交代表全體縣民的地方民意機關「縣市議會」審查與監督，通過後才能執行公帑。"
+  },
+  {
+    "id": 14,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "理解",
+    "page": "課本第 44 頁",
+    "stem": "憲法保障人民享有廣泛的「自由權」。下列哪一項生活事例屬於憲法保障的自由權具體範疇？",
+    "options": [
+      "在馬路上可以隨意闖紅燈超速飆車的自由",
+      "信仰自由、言論自由、居住與遷徙自由",
+      "在教室月考時可以隨意偷看同學考卷的自由",
+      "在公共圖書館安靜閱覽室內大聲唱歌跳舞的自由"
+    ],
+    "answer": 2,
+    "explanation": "憲法保障人民享有信仰宗教的自由、發表言論出版的自由，以及自由選擇居住地點與出國遷徙的自由，這些都是不可剝奪的人身精神自由。"
+  },
+  {
+    "id": 15,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "理解",
+    "page": "課本第 44 頁",
+    "stem": "憲法上的「受益權」，是指人民在生活遭遇困難或為求自我發展時，有權利請求國家提供適當的保護與給付。下列何者是人民行使受益權的展現？",
+    "options": [
+      "走路不小心摔倒時要求警察向地面的石頭道歉",
+      "適齡學童進入公立國民小學就讀，享有受教育與安全的校園環境",
+      "要求政府每天免費快遞配送一盒頂級巧克力到家裡",
+      "要求國防部每天派戰鬥機接送自己上下學"
+    ],
+    "answer": 2,
+    "explanation": "受益權包含受國民教育權、請願訴願與訴訟權、生存權與工作權。學童進入公立學校免費就讀並受良好保護，是國家履行保障受教受益權的體現。"
+  },
+  {
+    "id": 16,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "分析",
+    "page": "課本第 45 頁",
+    "stem": "憲法規定國民有依法納稅的義務。如果全體國民都自私自利拒絕繳納任何稅款，國家社會最可能面臨什麼嚴重的危機？",
+    "options": [
+      "全體國民在一夕之間全都成為全世界最有錢的富豪",
+      "全臺灣的道路和橋樑會自動變得更平整漂亮",
+      "所有學校的教室會自動變出最新型的平板電腦",
+      "政府缺乏財政收入維持運作，道路橋樑、學校教育與社會福利建設將全數停擺"
+    ],
+    "answer": 4,
+    "explanation": "稅收是國家維持運作、支付公教人員薪資、建設道路水電、採購國防武器與推動長照弱勢福利的命脈，缺乏稅收公權力各項施政將陷入癱瘓。"
+  },
+  {
+    "id": 17,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "理解",
+    "page": "課本第 44、45 頁",
+    "stem": "我國法律規定適齡學童必須進入國小國中接受國民義務教育。這項規範在憲法上同時兼具「權利」與「義務」的雙重意涵，其最佳詮釋是？",
+    "options": [
+      "教育既是國家必須提供人民自我發展的權利，也是國民為了提升國家整體素質而必須共同承擔的責任",
+      "只是為了讓家長白天可以在家安靜看電視休閒",
+      "只是學校校長為了招收學生所單純發明的行政規定",
+      "代表學生只要天天在教室坐著發呆就能長生不老"
+    ],
+    "answer": 1,
+    "explanation": "受教育對個人而言，是探索自我、學會生存技能與融入社會的「基本權利」；對國家而言，全體國民接受教育能提高國家競爭力，因此也是「國民義務」。"
+  },
+  {
+    "id": 18,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "分析",
+    "page": "課本第 43 頁",
+    "stem": "花蓮縣與臺東縣境內有許多原住民族鄉鎮，地方制度法特別規定設立「山地原住民區民代表會」。這項地方自治制度設計的最主要用意是什麼？",
+    "options": [
+      "為了禁止原住民族同胞前往其他平原大都市居住生活",
+      "花蓮與臺東縣政府依據在地多元族群特點，設立山地原住民區民代表會以保障其自主決策權",
+      "規定只有原住民身分才能在東臺灣報考計程車駕照",
+      "為了每天由代表會安排專人在鄉公所門口表演舞蹈"
+    ],
+    "answer": 2,
+    "explanation": "地方自治重視因地制宜，原住民山地鄉區民代表會能直接反映部落民意與文化需求，由在地族人自主議決鄉鎮預算與在地事務，落實族群多元自治。"
+  },
+  {
+    "id": 19,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "理解",
+    "page": "課本第 44 頁",
+    "stem": "憲法雖然保障每個人享有言論自由，但在網路上絕對不能任意散播謠言恐嚇他人或辱罵同學。這項法治概念告訴我們什麼道理？",
+    "options": [
+      "只有成年大人有言論自由，小學生在網路上不能表達意見",
+      "憲法明確規定行使權利時「要避免侵害他人的權利」，自由必須以尊重他人自由為界限",
+      "只要在網路論壇上匿名發文，就可以隨便罵人不用負責",
+      "警察每天勤務繁忙，根本不會追查網路上的違法犯罪"
+    ],
+    "answer": 2,
+    "explanation": "憲法第二十二條與第二十三條明文揭示：人民的自由權利以不妨礙他人自由、避免緊急危難、維持社會秩序或增進公共利益為前提，自由絕非無法無天。"
+  },
+  {
+    "id": 20,
+    "difficulty": "medium",
+    "diffName": "中等 🟡",
+    "bloom": "應用",
+    "page": "課本第 41、43 頁",
+    "scenario": "地方政治實例：高雄市規劃興建環狀輕軌捷運路網，以串聯各大商圈與文化觀光景點。",
+    "stem": "在推動這項重大地方建設的過程中，市長與市議員分別扮演何種法定角色？",
+    "options": [
+      "市長天天親自拿鐵鍬在路邊挖土；市議員負責站在月台售票",
+      "市長與市議員每天早上透過猜拳來決定今天誰當市長主持會議",
+      "市長負責向市民借錢籌款；市議員負責駕駛輕軌捷運列車",
+      "市長領導行政機關負責依法執行政策與建設；市議員在議會代表人民監督施政並審查預算"
+    ],
+    "answer": 4,
+    "explanation": "地方首長（市長）負責領導各局處專業規劃並執行公共建設；地方民意代表（市議員）負責代表市民監督工程進度、把關公帑預算並反映地方聲音。"
+  },
+  {
+    "id": 21,
+    "difficulty": "hard",
+    "diffName": "困難 🔴",
+    "bloom": "想法評判",
+    "page": "課本第 40、42 頁",
+    "stem": "中華民國憲法設計了行政、立法、司法、考試、監察等「五權分立」架構，而不是把所有國家大權交給單一領袖。這種憲政分權設計最核心的智慧何在？",
+    "options": [
+      "為了讓五個院的院長每天下班後可以聚在一起泡茶聊天",
+      "透過不同國家權力的分立與相互制衡監督，防止任何個人或機關專權獨裁，從根本保障人民基本自由",
+      "為了讓高普考試的題目盡量出得深奧難懂，拉高錄取門檻",
+      "只是古代君王隨意設定的官府名稱，毫無現代法治意義"
+    ],
+    "answer": 2,
+    "explanation": "權力使人腐化，絕對的權力使人絕對腐化。憲法將立法、行政、司法等權力分立，使其彼此牽制與監督，避免權力集中一人之手而重蹈專制獨裁的覆轍。"
+  },
+  {
+    "id": 22,
+    "difficulty": "hard",
+    "diffName": "困難 🔴",
+    "bloom": "分析",
+    "page": "課本第 42、43 頁",
+    "stem": "在國家整體治理中，為什麼需要劃分「中央政府」與「地方政府」的不同層級，而不是全部由中央政府統一發號施令？",
+    "options": [
+      "中央統籌全國性一致法規與國防外交大政，地方政府則就近掌握在地民意需求、迅速推動基層建設，兼顧全國整體利益與地方自主繁榮",
+      "因為中央官員討厭搭乘高鐵到處巡視，所以把繁雜事務全部推給地方處理",
+      "為了讓全國公務員的人數增加十倍，讓所有人都能領到政府薪水",
+      "因為地方政府完全不需要花費任何一毛錢就能自己建造所有大樓"
+    ],
+    "answer": 1,
+    "explanation": "中央掌管國防、外交、全國性法律等一體性事務；地方自治則具有就近服務、因地制宜的優勢，能靈活解決在地居民切身問題，兩者分工互補。"
+  },
+  {
+    "id": 23,
+    "difficulty": "hard",
+    "diffName": "困難 🔴",
+    "bloom": "想法評判",
+    "page": "課本第 44 頁",
+    "stem": "政府依法在公共設施設立無障礙坡道、博愛座，並在學校為身心障礙學生提供特殊輔具與特教津貼。下列哪一項評析最符合憲法「實質平等」的真諦？",
+    "options": [
+      "這是對一般身心健康學生的嚴重歧視，應該立刻拆除所有無障礙設施",
+      "憲法只保護身強力壯的人，身心障礙者的權益完全由個人自己負責",
+      "完全符合平等原則，因為憲法追求的是「實質平等」而非齊頭式假平等；透過對弱勢處境給予合理補償，才能彌平起跑點的差距",
+      "政府只是為了在國際媒體前拍照作秀，沒有任何實質人權意義"
+    ],
+    "answer": 3,
+    "explanation": "憲法的平等並非不管每個人條件的「齊頭式平等」，而是「實質平等」：針對處於不同不利情境的人（如身心障礙、偏鄉弱勢），給予合理的差別扶助與資源補償。"
+  },
+  {
+    "id": 24,
+    "difficulty": "hard",
+    "diffName": "困難 🔴",
+    "bloom": "想法評判",
+    "page": "課本第 42、43 頁",
+    "stem": "地方議會與立法院每逢審查預算時，常對行政首長提報的工程款項嚴厲質詢、刪減浮濫開支。各級議會為預算嚴格把關最核心的民主價值是什麼？",
+    "options": [
+      "貫徹代議民主對行政公權力的嚴密把關，看緊人民納稅血汗錢，防止政府浪費公帑與濫權施政",
+      "純粹為了故意刁難行政官員，讓所有的公共建設計畫通通延宕泡湯",
+      "打算把刪減下來的國家公款私下分裝放進議員自己的皮夾裡",
+      "為了讓開會審查時間拖延得越長越好，大家可以領取更多便當"
+    ],
+    "answer": 1,
+    "explanation": "政府的一切收入都來自人民納稅血汗錢。民意代表行使預算審查權，是代議民主最核心的防線，目的在確保每分公帑都花在刀口上、防止行政部門浪費腐敗。"
+  },
+  {
+    "id": 25,
+    "difficulty": "hard",
+    "diffName": "困難 🔴",
+    "bloom": "單元統整",
+    "page": "課本第 40～45 頁全單元",
+    "stem": "【單元大總結】綜合研讀本單元「民主國家的運作」：憲法奠定人權基石、中央與地方分工、政府五權制衡，加上公民積極參與。這套制度共同描繪出一個何種現代國家願景？",
+    "options": [
+      "一個完全沒有警察法規、任由大家隨心所欲想做什麼就做什麼的混亂原始社會",
+      "一個只有最高總統一個人說了算、所有老百姓只能絕對盲從的威權專制帝國",
+      "它是一座以「憲法保障人權」為最高準則，政府各部門各司其職、受民意嚴密監督依法行政，而全體公民知法守法、自覺積極參與公共事務的良善共同體",
+      "一個只要每四年投票一次、其餘時間大家對公共事務完全冷漠不管的消極國家"
+    ],
+    "answer": 3,
+    "explanation": "憲政民主的真正核心是「以人為本」：透過憲法確立人權不可侵犯，政府機關依法行政受民意監督，全體公民知權利、盡義務、積極參與，共同經營自由繁榮的良善社會。"
+  }
+];
+
+    const userAnswers = {};
+    let currentFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderInteractiveQuestions();
+      renderPrintQuestions();
+      renderSolutionsDetail();
+      updateStats();
+    });
+
+    function switchView(viewName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('interactiveView').style.display = 'none';
+      document.getElementById('printView').style.display = 'none';
+      document.getElementById('solutionsView').style.display = 'none';
+
+      if (viewName === 'interactive') {
+        document.getElementById('interactiveView').style.display = 'block';
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+      } else if (viewName === 'print') {
+        document.getElementById('printView').style.display = 'block';
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+      } else if (viewName === 'solutions') {
+        document.getElementById('solutionsView').style.display = 'block';
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterDifficulty(diff) {
+      currentFilter = diff;
+      document.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+      event.target.classList.add('active');
+      renderInteractiveQuestions();
+    }
+
+    function renderInteractiveQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      const filtered = quizData.filter(q => {
+        if (currentFilter === 'all') return true;
+        return q.difficulty === currentFilter;
+      });
+
+      filtered.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `card-q-${q.id}`;
+
+        const diffBadgeClass = q.difficulty === 'easy' ? 'badge-easy' : (q.difficulty === 'medium' ? 'badge-medium' : 'badge-hard');
+        let scenarioHtml = q.scenario ? `<div class="q-scenario">${q.scenario}</div>` : '';
+
+        let optionsHtml = '<div class="options-grid">';
+        q.options.forEach((optText, idx) => {
+          const optNum = idx + 1;
+          const isSelected = userAnswers[q.id] === optNum;
+          const isAnswered = userAnswers[q.id] !== undefined;
+
+          let btnClass = 'option-btn';
+          if (isAnswered) {
+            if (optNum === q.answer) {
+              btnClass += ' correct';
+            } else if (isSelected && optNum !== q.answer) {
+              btnClass += ' wrong';
+            }
+          }
+
+          optionsHtml += `
+            <button class="${btnClass}" onclick="handleSelectOption(${q.id}, ${optNum})" ${isAnswered ? 'disabled' : ''}>
+              <span class="opt-key">${optNum}</span>
+              <span class="opt-text">${optText}</span>
+            </button>
+          `;
+        });
+        optionsHtml += '</div>';
+
+        const isAnswered = userAnswers[q.id] !== undefined;
+        const expShowClass = isAnswered ? 'show' : '';
+
+        const explanationHtml = `
+          <div class="explanation-box ${expShowClass}" id="exp-${q.id}">
+            <div class="exp-title">
+              <span>💡 【素養解析】</span>
+              <span style="font-weight: 700; color: #16a34a; margin-left: 6px;">正確解答：選項 (${q.answer})</span>
+            </div>
+            <div class="exp-content">${q.explanation}</div>
+          </div>
+        `;
+
+        card.innerHTML = `
+          <div class="q-header">
+            <div class="q-num-box">
+              <span class="q-number">第 ${q.id} 題</span>
+              <span class="badge ${diffBadgeClass}">${q.diffName}</span>
+            </div>
+            <div class="q-badges">
+              <span class="badge badge-bloom">🧠 ${q.bloom}</span>
+              <span class="badge badge-page">📖 ${q.page}</span>
+            </div>
+          </div>
+          ${scenarioHtml}
+          <div class="q-stem">${q.stem}</div>
+          ${optionsHtml}
+          ${explanationHtml}
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function handleSelectOption(questionId, selectedOpt) {
+      if (userAnswers[questionId] !== undefined) return;
+      userAnswers[questionId] = selectedOpt;
+      renderInteractiveQuestions();
+      updateStats();
+    }
+
+    function updateStats() {
+      const answeredCount = Object.keys(userAnswers).length;
+      const total = quizData.length;
+      let correctCount = 0;
+
+      quizData.forEach(q => {
+        if (userAnswers[q.id] === q.answer) {
+          correctCount++;
+        }
+      });
+
+      const percent = Math.round((answeredCount / total) * 100);
+      const points = Math.round((correctCount / total) * 100);
+
+      document.getElementById('progressCount').innerText = `${answeredCount} / ${total}`;
+      document.getElementById('progressPercent').innerText = `${percent}%`;
+      document.getElementById('progressBar').style.width = `${percent}%`;
+      document.getElementById('correctScore').innerText = `${correctCount} 題`;
+      document.getElementById('pointScore').innerText = `${points} 分`;
+    }
+
+    function resetQuiz() {
+      if (confirm("確定要清除所有作答紀錄重新開始嗎？")) {
+        for (const key in userAnswers) {
+          delete userAnswers[key];
+        }
+        renderInteractiveQuestions();
+        updateStats();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function renderPrintQuestions() {
+      const printContainer = document.getElementById('printQuestionsList');
+      printContainer.innerHTML = '';
+
+      quizData.forEach(q => {
+        const item = document.createElement('div');
+        item.className = 'print-q-item';
+
+        let scenarioText = q.scenario ? `<div style="font-size: 0.92rem; color: #475569; margin: 4px 0 6px 0; padding: 4px 8px; background: #f8fafc; border-left: 3px solid #64748b;">${q.scenario}</div>` : '';
+
+        item.innerHTML = `
+          <div class="print-q-title">
+            ( &nbsp; &nbsp; ) ${q.id}. ${q.stem}
+          </div>
+          ${scenarioText}
+          <div class="print-q-options">
+            <div>(1) ${q.options[0]}</div>
+            <div>(2) ${q.options[1]}</div>
+            <div>(3) ${q.options[2]}</div>
+            <div>(4) ${q.options[3]}</div>
+          </div>
+        `;
+        printContainer.appendChild(item);
+      });
+    }
+
+    function renderSolutionsDetail() {
+      const solContainer = document.getElementById('solutionsDetailList');
+      solContainer.innerHTML = '';
+
+      quizData.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'sol-card';
+        card.innerHTML = `
+          <div class="sol-card-header">
+            <span>第 ${q.id} 題【${q.diffName}】｜ 正確解答：(${q.answer})</span>
+            <span style="font-size: 0.85rem; color: #475569;">${q.bloom}・${q.page}</span>
+          </div>
+          <div style="font-weight: 600; margin-bottom: 6px; font-size: 0.95rem;">${q.stem}</div>
+          <div style="font-size: 0.9rem; color: #475569; margin-bottom: 8px;">
+            (1) ${q.options[0]} &nbsp; | &nbsp; (2) ${q.options[1]} &nbsp; | &nbsp; (3) ${q.options[2]} &nbsp; | &nbsp; (4) ${q.options[3]}
+          </div>
+          <div style="font-size: 0.92rem; color: #1e40af; line-height: 1.6; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <strong>🎯 素養深度解析：</strong>${q.explanation}
+          </div>
+        `;
+        solContainer.appendChild(card);
+      });
+    }
+
+    function copyAllMarkdown() {
+      let mdText = `# 國小六年級社會科素養評量題庫\n## 單元 2-2：民主國家的運作\n\n`;
+      quizData.forEach(q => {
+        mdText += `### 第 ${q.id} 題【難度：${q.diffName}｜${q.bloom}｜${q.page}】\n`;
+        if (q.scenario) mdText += `> ${q.scenario}\n\n`;
+        mdText += `**題目**：${q.stem}\n`;
+        mdText += `1. ${q.options[0]}\n`;
+        mdText += `2. ${q.options[1]}\n`;
+        mdText += `3. ${q.options[2]}\n`;
+        mdText += `4. ${q.options[3]}\n\n`;
+        mdText += `**【正確解答】**：${q.answer}\n`;
+        mdText += `**【素養解析】**：${q.explanation}\n\n---\n\n`;
+      });
+
+      navigator.clipboard.writeText(mdText).then(() => {
+        alert("✅ 25 題完整題目、選項與詳解已複製到剪貼簿！可直接貼至 Word 或教學文件使用。");
+      }).catch(err => {
+        alert("複製失敗，請手動複製。");
+      });
+    }
+  </script>
+</body>
+</html>
